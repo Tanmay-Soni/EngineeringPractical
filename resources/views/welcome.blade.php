@@ -5,7 +5,10 @@
     <title>Weather Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap to get the Social Media Icons -->
+    <!-- Livewire Styles (Top of <head>) -->
+    @livewireStyles
+
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,22 +25,11 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-center mb-6">🌤️ Weather Dashboard</h1>
 
-        <div class="bg-white rounded-lg shadow-md p-6 space-y-4 max-w-xl mx-auto">
-            @if ($error)
-                <p class="text-red-500 text-center">{{ $error }}</p>
-            @elseif ($weather)
-                <p class="text-lg">Current Temperature: <span class="font-semibold">{{ $weather['temperature'] }}°C</span></p>
-                <p class="text-lg">Current Condition Code: <span class="font-semibold">{{ $weather['weathercode'] }}</span></p>
-
-                <div class="mt-4 border-t pt-4">
-                    <h2 class="text-xl font-bold mb-2">Additional Details</h2>
-                    <p>Wind Speed: <span class="font-semibold">{{ $weather['windspeed'] }} km/h</span></p>
-                    <p>Wind Direction: <span class="font-semibold">{{ $weather['winddirection'] }}°</span></p>
-                </div>
-            @else
-                <p class="text-center text-gray-600">No weather data available.</p>
-            @endif
+        <div> 
+            {{-- Livewire Component --}}
+            @livewire('weather-search-component')
         </div>
+        
     </main>
 
     <!-- Footer -->
@@ -56,5 +48,7 @@
         </div>
     </footer>
 
+    <!-- Livewire Scripts (Before closing body tag) -->
+    @livewireScripts
 </body>
 </html>

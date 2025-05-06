@@ -15,7 +15,7 @@ class ApiService
             $response = Http::get($this->baseUrl, [
                 'latitude' => $lat,
                 'longitude' => $lon,
-                'current_weather' => true
+                'current_weather' => true,
             ]);
 
             if ($response->failed()) {
