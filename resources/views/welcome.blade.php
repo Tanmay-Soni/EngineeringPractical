@@ -23,16 +23,22 @@
         <h1 class="text-3xl font-bold text-center mb-6">🌤️ Weather Dashboard</h1>
 
         <div class="bg-white rounded-lg shadow-md p-6 space-y-4 max-w-xl mx-auto">
-            <p class="text-lg">Current Temperature: <span class="font-semibold">XX</span></p>
-            <p class="text-lg">Current Condition: <span class="font-semibold">Sunny</span></p>
+            @if ($error)
+                <p class="text-red-500 text-center">{{ $error }}</p>
+            @elseif ($weather)
+                <p class="text-lg">Current Temperature: <span class="font-semibold">{{ $weather['temperature'] }}°C</span></p>
+                <p class="text-lg">Current Condition Code: <span class="font-semibold">{{ $weather['weathercode'] }}</span></p>
 
-            <div class="mt-4 border-t pt-4">
-                <h2 class="text-xl font-bold mb-2">Additional Details</h2>
-                <p>Humidity: <span class="font-semibold">X%</span></p>
-                <p>Wind Speed: <span class="font-semibold">X</span></p>
-            </div>
+                <div class="mt-4 border-t pt-4">
+                    <h2 class="text-xl font-bold mb-2">Additional Details</h2>
+                    <p>Wind Speed: <span class="font-semibold">{{ $weather['windspeed'] }} km/h</span></p>
+                    <p>Wind Direction: <span class="font-semibold">{{ $weather['winddirection'] }}°</span></p>
+                </div>
+            @else
+                <p class="text-center text-gray-600">No weather data available.</p>
+            @endif
         </div>
-    </main>w
+    </main>
 
     <!-- Footer -->
     <footer class="bg-white shadow-md p-4 flex justify-between items-center text-sm text-gray-600">
